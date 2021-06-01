@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from functools import cache
+
 
 """
 
@@ -19,18 +21,20 @@ INDX: The INDX of the next hop (DB) to jump to.
 """
 
 
+@cache
 def gigglehelper(dbs, timeout, prevhob, currtime, indx):
-    dbs = dbs.copy()
 
-    # If now is the time to jump back to 0 do it.
-    if len(dbs) <= 1:
-        if  currtime + abs(0 - prevhob ) <= timeout:
-            return  currtime + abs(0 - prevhob)
-        return -1
+    dbsl = list(dbs)
 
     # get hold of the next db to jump to and add the jumps time to the current time
-    nexthop = dbs.pop(indx)
-    newtime = currtime + abs(nexthop - prevhob)
+    nexthop = dbsl.pop(indx)
+    newtime = currtime + abs(prevhob - nexthop)
+
+    dbs = tuple(dbsl)
+
+    # If now is the time to jump back to 0 do it.
+    if len(dbs) == 0 and newtime <= timeout:
+        return newtime
 
     # make sure we did not pass the timeout threshold yet
     if newtime > timeout:
@@ -50,8 +54,15 @@ def gigglehelper(dbs, timeout, prevhob, currtime, indx):
 
 
 def giggle(dbs, timeout):
-    return gigglehelper(dbs, timeout, 0, 0, len(dbs) - 1)
+    res = []
 
+    for i in range(len(dbs)):
+        if dbs[i] == 0 and len(dbs) > 1:
+            continue
+
+        res.append(gigglehelper(dbs, timeout, 0, 0, i))
+
+    return max(res)
 
 
 def main():
@@ -63,14 +74,14 @@ def main():
     for i in range(numtests):
         input.readline() # number of elements
         arrstr = input.readline().strip().split(" ")
-        arr = list(map(lambda x : int(x), arrstr))
+        arr = tuple(map(lambda x : int(x), arrstr))
         timeout = int(input.readline()) # line with timeout
         result = giggle(arr,timeout)
 
         if result == -1:
             result = "NO SOLUTION"
 
-        print("CASE {}: {}".format(i + 1, result))
+        print("Case #{}: {}".format(i + 1, result))
 
 
 if __name__ == "__main__":
