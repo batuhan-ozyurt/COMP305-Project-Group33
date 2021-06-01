@@ -18,7 +18,7 @@
 
 
 
-## Meeting 1 Minutes (10th of May,2021)
+## Meeting 1 Minutes (10th of May, 2021)
 
 We discussed the problem and discussed multiple possible
 solutions, finding counter examples for some of those
