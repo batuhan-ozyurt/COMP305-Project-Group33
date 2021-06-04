@@ -224,8 +224,8 @@ sys 0m0.011s
 	~0.06308781389212889891
 ```
 
-We will continue to invisitage the algorithmic complexity of our approach, and
-find an explination for why memoization helped. Initially it seems since
+We will continue to investigate the algorithmic complexity of our approach, and
+find an explanation for why memoization helped. Initially it seems since
 our problem is very similar to TSP, our solution might have a similar
 complexity to the TSP dynamic programming solution which is O(2^n * n^2).
 
