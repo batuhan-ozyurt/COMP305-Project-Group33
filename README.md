@@ -100,7 +100,7 @@ correct answer (output).
 * Research on cliques and Hamiltonian cycles to come up with a more efficient algorithm.
 * Think about the analogy between our problem and the TSP. Try to reduce one to another.
  
-## Summary (Meeting, 2nd of June, 2021)
+## Meeting 3 Minutes (Meeting, 2nd of June, 2021)
 
 In this meeting we talked about the recursive solution we have now, and how
 memorization is helping.
@@ -126,7 +126,7 @@ reported. Therefore, we are confident that the increased ratio is signifying
 that the improvement due to memoization is not mearly a constant, but rather a
 variable dependent on n.
 
-## Summary (Meeting, 4th of June, 2021)
+## Meeting 4 Minutes (4th of June, 2021)
 
 In this meeting we will discuss the newly added "hybrid" implementation, in
 addition to final remarks in order to create the presentation.
