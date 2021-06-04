@@ -64,6 +64,8 @@ Did not work, failed with the following counter case:
 60
 ```
 
+Here is the link to our first implementation (which is not correct): [Aydin's implementation of zig zag](https://github.com/ozcanay/giggle)
+
 ### Second Idea (zig zag from all)
 
 1. Pick a database (other than zero) that was not started from previously.
