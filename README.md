@@ -12,17 +12,13 @@
 
 - Aydın Özcan
 
-**To-Do List**
-
-- Create a Baseline Model
-
 
 ## Running the Project
 
 All one needs to do is to run the python program located in the `src/` folder
 of this repo. The program provides options to specify which algorithm to use,
-what input file to use, and some other algorithm specific options (such as the base option for the hybrid algorithm).
-
+what input file to use, and some other algorithm specific options (such as the base option for the hybrid algorithm)
+(iterative is the baseline algorithm, giggle1&2 use DP, hybrid is a mixture of DP and greedy).
 
 ```
 $ ./main.py
