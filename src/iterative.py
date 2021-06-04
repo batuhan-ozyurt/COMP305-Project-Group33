@@ -30,7 +30,6 @@ def giggleiter(dbs, timeout):
         if count > timeout:
             continue
 
-        print(perm, count)
         sums.append(count)
 
     return max(sums)
