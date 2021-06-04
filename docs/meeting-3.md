@@ -33,11 +33,3 @@ We will continue to invisitage the algorithmic complexity of our approach, and
 find an explination for why memoization helped. Initially it seems since
 our problem is very similar to TSP, our solution might have a similar
 complexity to the TSP dynamic programming solution which is O(2^n * n^2).
-
-## Extra notes
-
-We might have ignored the fact that we need to
-find the longest response time **within a
-threshold**, meaning that for the same database
-array (input), changing the threshold can change the
-correct answer (output).
