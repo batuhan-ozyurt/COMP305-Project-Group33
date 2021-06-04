@@ -173,6 +173,12 @@ improve the results and get them closer to the correct answer.
 ### Quick results on the given input set
 
 ```
+giggle0:
+
+real 0m0.037s
+user 0m0.007s
+sys 0m0.013s
+
 giggle (cached):
 real    0m3.386s
 user    0m3.246s
