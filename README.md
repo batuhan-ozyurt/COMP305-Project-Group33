@@ -100,3 +100,108 @@ correct answer (output).
 * Research on cliques and Hamiltonian cycles to come up with a more efficient algorithm.
 * Think about the analogy between our problem and the TSP. Try to reduce one to another.
  
+## Summary (Meeting, 2nd of June, 2021)
+
+In this meeting we talked about the recursive solution we have now, and how
+memorization is helping.
+
+We know that the algorithms worst case complexity is O(n!), as we are
+technically trying out all the possible paths, similar to the complexity of
+finding all the permutations of a given string of unique characters.
+
+However, when we started counting the number of recursive calls and tested the
+algorithm with (18308) and without (149920) memoization we noticed a speed
+poost attributed to the reduced ratio (12%) of recursive calls.
+
+```
+; 18308/149920
+	~0.12211846318036286019
+```
+
+Not only that, but when we tested it with a lengthier input, we noticed that
+the results with (1240496) and without (19663005) memoization still were
+considerably better, not to mention that we were not able to wait for the one
+without memoization to finish so the new ratio (6%) might be even larger than
+reported. Therefore, we are confident that the increased ratio is signifying
+that the improvement due to memoization is not mearly a constant, but rather a
+variable dependent on n.
+
+## Summary (Meeting, 4th of June, 2021)
+
+In this meeting we will discuss the newly added "hybrid" implementation, in
+addition to final remarks in order to create the presentation.
+
+### Origin
+
+After writing the iterative solution, which is of complexity O(n!), we
+thought of possible ways to improve it, or even put it all aside and come
+up with something new. We spent a lot of time trying to come up with a
+polynomial solution to the problem, or at least show that it is NP-hard.
+
+One of those polynomial attempts was to seek a greedish path. Not only
+greedy in terms of finding the smallest or largest delay, but rather two
+greedy policies that can be switched up during runtime.
+
+The algorithm will, like binary search, attempt to find a possible path
+which is closest to the threshold. The tool it will use to switch up or
+down will be the ratio of jumps it takes with a maximizing greedy method to
+the jumps it takes with a minimizing greedy method, the algorithm partially
+worked, but failed in many cases. After further investigation of the
+possible permutations that this approach won't be able to cover we
+abandoned it.
+
+Later on, we sought a path in which we can combine this approach with the
+dynamic programming main algorithm we found to fasten the algorithm on the
+cost of lower accuracy.
+
+### Idea
+
+The main idea revolves around the following:
+
+1. pick up a promising permutation
+2. run the cached (db) giggle on the last log(n) databases in that permutation.
+3. return the best result
+
+The idea here is to pick a permutation which, by changing the log(n) end of
+it we might be able to improve it sufficiently as to get the correct
+answer, or something near it. The greedy algorithm comes in handy here, as
+it allows us to find many "candidate" permutations that have values close
+to the threshold quite quickly (in polynomial time). Then we can run giggle
+on the log(n) ending databases in those permutations in an attempt to
+improve the results and get them closer to the correct answer.
+
+### Quick results on the given input set
+
+```
+giggle (cached):
+real    0m3.386s
+user    0m3.246s
+sys 0m0.137s
+
+giggle2 (cached):
+real    0m6.823s
+user    0m6.455s
+sys 0m0.363s
+
+iterative (brute force):
+real    0m20.544s
+user    0m19.619s
+sys 0m0.913
+
+hybrid (approximation): (around 25/100 were close, and 75/100 were correct)
+real    0m0.204s
+user    0m0.193s
+sys 0m0.011s
+```
+
+```
+; 1240496/19663005
+	~0.06308781389212889891
+```
+
+We will continue to invisitage the algorithmic complexity of our approach, and
+find an explination for why memoization helped. Initially it seems since
+our problem is very similar to TSP, our solution might have a similar
+complexity to the TSP dynamic programming solution which is O(2^n * n^2).
+
+
