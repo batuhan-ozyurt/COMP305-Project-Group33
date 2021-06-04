@@ -100,7 +100,7 @@ correct answer (output).
 * Research on cliques and Hamiltonian cycles to come up with a more efficient algorithm.
 * Think about the analogy between our problem and the TSP. Try to reduce one to another.
  
-## Meeting 3 Minutes (Meeting, 2nd of June, 2021)
+## Meeting 3 Minutes (2nd of June, 2021)
 
 In this meeting we talked about the recursive solution we have now, and how
 memorization is helping.
