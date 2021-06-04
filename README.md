@@ -17,6 +17,27 @@
 - Create a Baseline Model
 
 
+## Running the Project
+
+All one needs to do is to run the python program located in the `src/` folder
+of this repo. The program provides options to specify which algorithm to use,
+what input file to use, and some other algorithm specific options (such as the base option for the hybrid algorithm).
+
+
+```
+$ ./main.py
+usage: main.py [-h] [-m METHOD] [-b BASE] -i INPUT
+
+Giggle Algorithms Runner
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -m METHOD, --method METHOD
+                        name of the method to use: giggle, giggle2, iterative, hybrid
+  -b BASE, --base BASE  the log base to use if hybrid was picked
+  -i INPUT, --input INPUT
+                        the path to the input file
+```
 
 ## Meeting 1 Minutes (10th of May, 2021)
 
@@ -74,7 +95,7 @@ Did not work, failed with the following counter case:
 
 ### Fourth Idea (all possible paths)
 
-1. from zero recurse by jumping to all other databases. 
+1. from zero recurse by jumping to all other databases.
 2. recurse by jumping to all other unvisited databases. (maybe use dynamic programming to reduce complexity)
 3. from all of the possible paths, return the one with highest value.
 
@@ -99,7 +120,7 @@ correct answer (output).
 * Try to improve the baseline model that we have.
 * Research on cliques and Hamiltonian cycles to come up with a more efficient algorithm.
 * Think about the analogy between our problem and the TSP. Try to reduce one to another.
- 
+
 ## Meeting 3 Minutes (2nd of June, 2021)
 
 In this meeting we talked about the recursive solution we have now, and how
