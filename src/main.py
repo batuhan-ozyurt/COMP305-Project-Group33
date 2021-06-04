@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import argparse
 import giggle
 import giggle2
 import iterative
@@ -27,7 +28,14 @@ INDX: The INDX of the next hop (DB) to jump to.
 
 def main():
 
-    input = open("input.txt")
+    parser = argparse.ArgumentParser(description='Giggle Algorithms Runner')
+    parser.add_argument('-m', '--method', type=str, default="giggle", required=False, help="name of the method to use: giggle, giggle2, iterative, hybrid")
+    parser.add_argument('-b', '--base', type=float, default=2, required=False, help="the log base to use if hybrid was picked")
+    parser.add_argument('-i', '--input', type=str, required=True, help="the path to the input file")
+    args = parser.parse_args()
+
+    input = open(args.input)
+
 
     numtests = int(input.readline())
 
@@ -37,10 +45,21 @@ def main():
         arr = list(map(lambda x : int(x), arrstr))
         timeout = int(input.readline()) # line with timeout
 
-        result = giggle.giggle(arr, timeout)
-        # result = giggle2.giggle2(arr, timeout)
-        # result = iterative.giggleiter(arr, timeout)
-        # result = hybrid.gigglehybrid(arr, timeout, 2)
+        result = -1
+
+        if args.method == "giggle":
+            result = giggle.giggle(arr, timeout)
+        elif args.method == "giggle2":
+            result = giggle2.giggle2(arr, timeout)
+        elif args.method == "iterative":
+            result = iterative.giggleiter(arr, timeout)
+        elif args.method == "hybrid":
+            result = hybrid.gigglehybrid(arr, timeout, args.base)
+        else:
+            print("Invalid method.")
+            print("Valid methods are: giggle, giggle2, iterative, hybrid.")
+            return
+
 
         if result == -1:
             result = "NO SOLUTION"
