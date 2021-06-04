@@ -42,24 +42,27 @@ def main():
     for i in range(numtests):
         input.readline() # number of elements
         arrstr = input.readline().strip().split(" ")
-        arr = list(map(lambda x : int(x), arrstr))
+        arr = list(map(lambda x : int(x), arrstr))        
+            
         timeout = int(input.readline()) # line with timeout
-
-        result = -1
-
-        if args.method == "giggle":
-            result = giggle.giggle(arr, timeout)
-        elif args.method == "giggle2":
-            result = giggle2.giggle2(arr, timeout)
-        elif args.method == "iterative":
-            result = iterative.giggleiter(arr, timeout)
-        elif args.method == "hybrid":
-            result = hybrid.gigglehybrid(arr, timeout, args.base)
+        
+        if 2 * (max(arr) - min(arr)) > timeout:
+            result = -1
         else:
-            print("Invalid method.")
-            print("Valid methods are: giggle, giggle2, iterative, hybrid.")
-            return
 
+    
+            if args.method == "giggle":
+                result = giggle.giggle(arr, timeout)
+            elif args.method == "giggle2":
+                result = giggle2.giggle2(arr, timeout)
+            elif args.method == "iterative":
+                result = iterative.giggleiter(arr, timeout)
+            elif args.method == "hybrid":
+                result = hybrid.gigglehybrid(arr, timeout, args.base)
+            else:
+                print("Invalid method.")
+                print("Valid methods are: giggle, giggle2, iterative, hybrid.")
+                return
 
         if result == -1:
             result = "NO SOLUTION"
